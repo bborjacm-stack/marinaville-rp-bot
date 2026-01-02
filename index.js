@@ -1,3 +1,4 @@
+import express from "express";
 import "dotenv/config";
 import {
   Client,
@@ -193,5 +194,17 @@ client.on("messageReactionAdd", async (reaction, user) => {
     }
   }
 });
+// --- Servidor HTTP mínimo para Render ---
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("Bot MarinaVilleRP activo ✅");
+});
+
+app.listen(PORT, () => {
+  console.log(`🌐 Servidor web escuchando en puerto ${PORT}`);
+});
+// ---------------------------------------
 
 client.login(process.env.DISCORD_TOKEN);
