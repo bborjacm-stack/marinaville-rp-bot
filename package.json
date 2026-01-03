@@ -1,0 +1,21 @@
+<<<<<<< HEAD
+{
+  "name": "rp-roblox-bot",
+  "type": "module",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "express": "^5.2.1"
+  }
+}
+=======
+{
+  "name": "rp-roblox-bot",
+  "type": "module",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "express": "^5.2.1"
+  }
+}
+>>>>>>> 4340f8448d225ff4afe096f4ccef669eafe05288
