@@ -95,8 +95,8 @@ client.on("interactionCreate", async (interaction) => {
           `• **TEMA:** ${tema}`,
           `• **CANTIDAD DE VOTOS (✅) NECESARIOS:** **${needed}**`,
           "",
-          "Reacciona con ✅ para **Sí** o ❌ para **No**.",
-          "La votación se cierra automáticamente al llegar a los ✅ necesarios.",
+          "Vota en la encuesta de abajo (sin reacciones).",
+          "La encuesta se cerrará automáticamente cuando termine el tiempo.",
           "━━━━━━━━━━━━━━━━━━",
         ].join("\n")
       )
@@ -109,13 +109,19 @@ client.on("interactionCreate", async (interaction) => {
       return interaction.reply({ content: "⚠️ No encuentro el canal de votaciones. Revisa CHANNEL_VOTACIONES.", ephemeral: true });
     }
 
-    const msg = await channel.send({ embeds: [embed] });
-    await msg.react("✅");
-    await msg.react("❌");
+    await channel.send({ embeds: [embed] });
+    await channel.send({
+  poll: {
+    question: { text: tema },
+    answers: [{ text: "se" }, { text: "no" }],
+    duration: 24, // horas
+    allowMultiselect: false,
+  },
+});
 
-    VOTES_TRACK.set(msg.id, { needed, yesCount: 0, closed: false });
+return interaction.reply({ content: "✅ Votación publicada.", ephemeral: true });
 
-    return interaction.reply({ content: "✅ Votación creada.", ephemeral: true });
+  
   }
 
   // /sanciones
